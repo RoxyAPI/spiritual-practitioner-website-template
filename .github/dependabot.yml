@@ -11,6 +11,21 @@ updates:
         update-types:
           - "minor"
           - "patch"
+    ignore:
+      # TypeScript 7 is a full compiler rewrite and the Next.js toolchain does not support it yet.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      # ESLint 10 breaks eslint-plugin-react, which ships transitively inside eslint-config-next:
+      # the plugin still calls the pre-10 rule context API and throws on every run. The peer range
+      # advertises eslint >=9, so the bump looks safe and is not. Revisit when Next ships a config
+      # that supports 10.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
+      # @types/node tracks the Node major it describes. CI and the deploy runtime are on Node 22,
+      # so Node 26 typings would advertise APIs that do not exist at runtime. Bump this with the
+      # runtime, not ahead of it.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
