@@ -31,6 +31,18 @@
 - 🗝️ **One file to edit. No code.** Your name, bio, prices, testimonials, FAQ, and colours all live in `site.config.ts`. Change the words, and the site changes.
 - 🤍 **Yours under MIT.** Fork it, rebrand it, extend it, sell what you build on it. No monthly website fee, no platform that can switch you off.
 
+## Screenshots
+
+| Home | Free reading |
+|---|---|
+| <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/home-light.jpg" alt="Home page"> | <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/birth-chart-light.jpg" alt="Free birth chart reading"> |
+
+| Services and prices | Blog |
+|---|---|
+| <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/services-light.jpg" alt="Services and prices"> | <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/blog-light.jpg" alt="Blog index"> |
+
+Dark mode ships with every palette: [home](https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/home-dark.jpg), [services](https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/services-dark.jpg), [readings](https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/readings-dark.jpg).
+
 ---
 
 ## A Serious Practitioner Owns Their Codebase
@@ -214,18 +226,6 @@ The post appears on your blog, in your sitemap, and on social media cards. Three
 | **Four colour palettes** | One word in the config changes the whole site. |
 
 Every reading is calculated by [RoxyAPI](https://roxyapi.com) and verified against NASA JPL Horizons. Nothing is invented by a language model, and nothing about your visitors is stored.
-
-## Screenshots
-
-| Home | Free reading |
-|---|---|
-| <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/home-light.jpg" alt="Home page"> | <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/birth-chart-light.jpg" alt="Free birth chart reading"> |
-
-| Services and prices | Blog |
-|---|---|
-| <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/services-light.jpg" alt="Services and prices"> | <img src="https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/blog-light.jpg" alt="Blog index"> |
-
-Dark mode ships with every palette: [home](https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/home-dark.jpg), [services](https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/services-dark.jpg), [readings](https://raw.githubusercontent.com/RoxyAPI/spiritual-practitioner-website-template/main/public/screenshots/readings-dark.jpg).
 
 ## Your Visitors and Their Privacy
 
