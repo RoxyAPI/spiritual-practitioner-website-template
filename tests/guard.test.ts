@@ -27,7 +27,9 @@ afterEach(() => {
 describe('unwrap', () => {
   it('returns data when the call succeeds', async () => {
     const { unwrap } = await loadGuard('sk_test_key');
-    await expect(unwrap(Promise.resolve({ data: { sign: 'leo' } }))).resolves.toEqual({ sign: 'leo' });
+    await expect(unwrap(Promise.resolve({ data: { sign: 'leo' } }))).resolves.toEqual({
+      sign: 'leo',
+    });
   });
 
   it('refuses to call the API at all when no key is configured', async () => {
@@ -44,21 +46,25 @@ describe('unwrap', () => {
     ['not_found', /not available/i],
   ])('maps %s onto a message a visitor can act on', async (code, expected) => {
     const { unwrap } = await loadGuard('sk_test_key');
-    await expect(unwrap(Promise.resolve({ error: { code, error: 'raw' } }))).rejects.toThrow(expected);
+    await expect(unwrap(Promise.resolve({ error: { code, error: 'raw' } }))).rejects.toThrow(
+      expected,
+    );
   });
 
   it('falls back to the message the API sent for an unknown code', async () => {
     const { unwrap } = await loadGuard('sk_test_key');
     await expect(
-      unwrap(Promise.resolve({ error: { code: 'teapot', error: 'Something specific went wrong' } })),
+      unwrap(
+        Promise.resolve({ error: { code: 'teapot', error: 'Something specific went wrong' } }),
+      ),
     ).rejects.toThrow('Something specific went wrong');
   });
 
   it('never leaks how the site is built into a visitor-facing message', async () => {
     const { unwrap } = await loadGuard('sk_test_key');
-    await expect(unwrap(Promise.resolve({ error: { code: 'validation_error' } }))).rejects.not.toThrow(
-      /stack|node_modules|sdk/i,
-    );
+    await expect(
+      unwrap(Promise.resolve({ error: { code: 'validation_error' } })),
+    ).rejects.not.toThrow(/stack|node_modules|sdk/i);
   });
 });
 

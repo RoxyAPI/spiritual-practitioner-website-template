@@ -2,11 +2,11 @@
 
 import { RoxyCompatibilityCard } from '@roxyapi/ui-react';
 import { useActionState } from 'react';
+import { compatibilityAction } from '@/app/readings/actions';
 import { CitySearch } from '@/components/city-search';
 import { ReadingError, ReadingResult, SubmitButton } from '@/components/readings/parts';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { compatibilityAction } from '@/app/readings/actions';
 import { IDLE } from '@/lib/reading-state';
 
 const PEOPLE = [
@@ -27,12 +27,22 @@ export function CompatibilityForm() {
 
               <div className="space-y-2">
                 <Label htmlFor={`${person.prefix}-date`}>Birth date</Label>
-                <Input id={`${person.prefix}-date`} name={`${person.prefix}.date`} type="date" required />
+                <Input
+                  id={`${person.prefix}-date`}
+                  name={`${person.prefix}.date`}
+                  type="date"
+                  required
+                />
               </div>
 
               <div className="space-y-2">
                 <Label htmlFor={`${person.prefix}-time`}>Birth time</Label>
-                <Input id={`${person.prefix}-time`} name={`${person.prefix}.time`} type="time" required />
+                <Input
+                  id={`${person.prefix}-time`}
+                  name={`${person.prefix}.time`}
+                  type="time"
+                  required
+                />
               </div>
 
               <CitySearch prefix={person.prefix} />

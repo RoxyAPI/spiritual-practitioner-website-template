@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { BookingCta } from '@/components/booking-cta';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { enabledReadings } from '@/lib/readings';
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function ReadingsPage() {
         lead="Each reading below is calculated from your own birth details, not pulled from a list of generic answers. No signup, no email wall, nothing stored."
       />
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {readings.map((reading) => (
             <li key={reading.key}>
@@ -50,11 +51,11 @@ export default function ReadingsPage() {
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta line="A free reading tells you what the sky is doing. A session tells you what to do about it." />
-      </section>
+      </Section>
     </div>
   );
 }

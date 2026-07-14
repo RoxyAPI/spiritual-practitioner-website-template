@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookingCta } from '@/components/booking-cta';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
 import { formatDate, listPosts } from '@/lib/blog';
 
@@ -23,7 +24,7 @@ export default async function BlogPage() {
         lead="The questions that come up often enough to be worth writing down properly, answered here rather than repeated in every reading."
       />
 
-      <section className="py-16 sm:py-24">
+      <Section>
         {posts.length === 0 ? (
           <p className="text-muted-foreground">The first post is on its way.</p>
         ) : (
@@ -50,11 +51,11 @@ export default async function BlogPage() {
             ))}
           </ul>
         )}
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta line="Reading about it only goes so far. The chart in front of you is where it gets specific." />
-      </section>
+      </Section>
     </div>
   );
 }

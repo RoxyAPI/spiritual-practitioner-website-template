@@ -2,10 +2,10 @@
 
 import { RoxyNumerologyCard } from '@roxyapi/ui-react';
 import { useActionState } from 'react';
+import { lifePathAction } from '@/app/readings/actions';
 import { ReadingError, ReadingResult, SubmitButton } from '@/components/readings/parts';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { lifePathAction } from '@/app/readings/actions';
 import { IDLE } from '@/lib/reading-state';
 
 export function LifePathForm() {

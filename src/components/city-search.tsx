@@ -4,7 +4,7 @@ import { MapPin } from 'lucide-react';
 import { useRef, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import type { City } from '@/lib/cities';
+import type { City } from '@/types';
 
 /**
  * Birth city picker. Selecting a city fills the hidden coordinate and timezone fields the chart
@@ -90,7 +90,9 @@ export function CitySearch({
       </div>
 
       <p id={`${id}-hint`} className="text-xs text-muted-foreground">
-        {selected ? `Using ${labelFor(selected)}` : 'Pick your city from the list so the timezone is right.'}
+        {selected
+          ? `Using ${labelFor(selected)}`
+          : 'Pick your city from the list so the timezone is right.'}
       </p>
 
       {/* The values the chart endpoints actually receive. Empty until a city is picked, which is what makes the field required. */}

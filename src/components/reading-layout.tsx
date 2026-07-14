@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { BookingCta } from '@/components/booking-cta';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 
 /**
  * The frame every free reading sits in. The booking call to action closes each one because the
@@ -22,11 +23,11 @@ export function ReadingLayout({
     <div className="divide-y divide-border/60">
       <PageHeader eyebrow="Free Reading" title={title} lead={lead} />
 
-      <section className="py-16 sm:py-24">{children}</section>
+      <Section>{children}</Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta line={cta} />
-      </section>
+      </Section>
     </div>
   );
 }

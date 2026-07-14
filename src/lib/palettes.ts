@@ -1,11 +1,21 @@
-import type { PaletteKey } from '@/config/site.config';
+import type { PaletteKey } from '@/types';
 
 /**
  * The light values of each palette, for the one place that cannot read a CSS variable: the social card, which is rendered as an image on the server.
  *
  * @remarks These are a copy of the light blocks in `globals.css`, and a copy is a liability, so `tests/design-tokens.test.ts` parses the stylesheet and fails if the two ever disagree. Change a colour in one place and the test tells you about the other.
  */
-export const PALETTES: Record<PaletteKey, { background: string; foreground: string; primary: string; accent: string; card: string; border: string }> = {
+export const PALETTES: Record<
+  PaletteKey,
+  {
+    background: string;
+    foreground: string;
+    primary: string;
+    accent: string;
+    card: string;
+    border: string;
+  }
+> = {
   rosewater: {
     background: '#FBF6F3',
     foreground: '#3E2A2C',

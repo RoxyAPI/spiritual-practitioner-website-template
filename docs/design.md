@@ -64,6 +64,26 @@ Contrast: every foreground/background pair is WCAG AAA, and every primary and mu
 
 Selector shape in `globals.css`: `html[data-palette='kiln'] { ... }` and `html[data-palette='kiln'].dark { ... }`. All four palettes ship; unused ones cost nothing.
 
+### Switching palette
+
+One word in `site.config.ts`. Nothing else, ever:
+
+```ts
+palette: 'moonlit',
+```
+
+Every page, every reading component, and the social card follow it, in light and in dark.
+
+### Adding a palette (all five steps, or the build fails)
+
+1. `globals.css`: add BOTH blocks, `html[data-palette='<name>']` and `html[data-palette='<name>'].dark`, each declaring every token listed above.
+2. `src/types/index.ts`: add the name to the `PaletteKey` union.
+3. `src/lib/palettes.ts`: add the LIGHT values to `PALETTES`. This is the copy the social card renders from, since an image cannot read a CSS variable.
+4. `tests/design-tokens.test.ts`: add the name to `PALETTES_IN_CSS`. The suite then holds steps 1 and 3 to each other and fails if they ever disagree.
+5. Contrast-check muted text against the CARD colour (the darker surface, and the one that fails first), then run the accessibility pass in [code.md](./code.md).
+
+Skipping step 3 or 4 does not break the site, which is exactly why they are listed: the social card would quietly keep the old colours.
+
 ## Typography (Google Fonts via next/font, loaded as CSS variables)
 
 | Role | Font | Rules |
@@ -80,17 +100,22 @@ Eyebrow and button treatment (the classic feminine-editorial formula): uppercase
 
 ## Background treatment (grain, not gradients)
 
-- Base: the palette `background` across the whole body. One container, no per-section background colors.
+- Base: the palette `background` across the whole body. No per-section background colors.
 - Texture: a single fixed inline SVG turbulence (noise) overlay across the page at 2 to 4 percent opacity. This is what makes it feel printed, not rendered.
-- Wash: at most ONE large soft radial wash per major section, using the palette card or accent tint at 20 to 30 percent alpha, bleeding from a corner.
+- Wash: at most ONE large soft radial wash per major section, using the palette card or accent tint at 20 to 30 percent alpha, bleeding from a corner. Apply it with `<Section wash="start">` or `wash="end"`, never by hand: the wash must paint on the full-width band, not on the container, or it stops short of the screen edge.
 - NEVER: two-stop diagonal linear gradients, purple-to-anything, animated gradient meshes.
 
 Hand-finished accents (small doses): a hand-drawn SVG underline stroke beneath the hero headline; star or moon glyphs as list markers on service and FAQ lists; 16 to 24px radius on photos and cards. No sticker collages, no parallax, no scroll-triggered reveals.
 
 ## Layout
 
-- One container in the root layout: `max-w-6xl mx-auto px-4 sm:px-6`. Pages never add their own width wrappers.
-- Section rhythm: `py-16 sm:py-24` between major sections; `space-y-6` inside. When in doubt, add space.
+**Full-bleed band, contained content.** Every horizontal band on the page (the announcement bar, the header, each `Section`, the footer) spans the full viewport so its background can reach the screen edge, and puts its content inside the shared container. That is what lets a washed section bleed edge to edge while its text still lines up with the wordmark above it and the footer columns below it.
+
+- The measure is declared ONCE, as `.site-container` in `globals.css` (`mx-auto w-full max-w-6xl px-4 sm:px-6`). Nothing else may declare a page width. `tests/design-tokens.test.ts` fails if a component re-declares it.
+- `src/components/section.tsx` is the only layout primitive a page composes: it owns the full-width band, the optional wash, the container, and the vertical rhythm (`py-16 sm:py-24`). A page never sets a width, a gutter, or a section padding.
+- **Every page uses the same container, including a blog post.** No page gets its own width. If a block needs to be narrower, constrain that block inside the section (`max-w-2xl` on the element), never the container around it.
+- Never put the container in the root layout. A container there caps every background at its edge, so a washed section renders as a floating band with gutters instead of reaching the screen.
+- Rhythm: `py-16 sm:py-24` per section (the Section applies it); `space-y-6` inside. When in doubt, add space.
 - Hierarchy through type scale and weight, never through colored boxes.
 - Cards: palette `card` surface, 1px `border`, radius `rounded-2xl`, no shadow stack, no hover transform.
 - Buttons: primary = `primary` background with `primary-foreground` text; secondary = outline on `border`. Uppercase treatment above.
@@ -140,7 +165,7 @@ Three rules the token names hide.
 
 | Decision | Why |
 |---|---|
-| No custom cursor (wand, sparkle) | Accessibility cost, gimmick signal. Rejected 2026-07-14. |
+| No custom cursor (wand, sparkle) | Accessibility cost, and it reads as a gimmick. |
 | No purple/violet/indigo family | The single strongest generic-AI-template tell in this niche. |
 | Grain + one wash instead of gradients | Printed-paper tactility reads hand-made; gradient meshes read generated. |
 | Fraunces + Parisienne + Jost | Free equivalents of what top practitioner brands actually pay for; Jost observed in production in this exact niche. |

@@ -31,7 +31,7 @@ describe('ProfessionalService', () => {
 
   it('is a ProfessionalService pointing back at the Person', () => {
     expect(practice['@type']).toBe('ProfessionalService');
-    expect(practice.provider).toEqual({ '@id': `${siteConfig.siteUrl}#person` });
+    expect(practice.founder).toEqual({ '@id': `${siteConfig.siteUrl}#person` });
   });
 });
 

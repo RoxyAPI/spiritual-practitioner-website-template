@@ -11,7 +11,12 @@ const SPEC = (domain: string) => `https://roxyapi.com/api/v2/${domain}/openapi.j
 
 /** Every call in `src/app/readings/actions.ts`, `src/app/api/cities/route.ts`, and `src/components/card-of-the-day.tsx`. */
 const ENDPOINTS = [
-  { domain: 'astrology', method: 'post', path: '/astrology/natal-chart', operationId: 'generateNatalChart' },
+  {
+    domain: 'astrology',
+    method: 'post',
+    path: '/astrology/natal-chart',
+    operationId: 'generateNatalChart',
+  },
   {
     domain: 'astrology',
     method: 'get',
@@ -24,10 +29,25 @@ const ENDPOINTS = [
     path: '/astrology/compatibility-score',
     operationId: 'calculateCompatibility',
   },
-  { domain: 'numerology', method: 'post', path: '/numerology/life-path', operationId: 'calculateLifePath' },
-  { domain: 'tarot', method: 'post', path: '/tarot/spreads/three-card', operationId: 'castThreeCard' },
+  {
+    domain: 'numerology',
+    method: 'post',
+    path: '/numerology/life-path',
+    operationId: 'calculateLifePath',
+  },
+  {
+    domain: 'tarot',
+    method: 'post',
+    path: '/tarot/spreads/three-card',
+    operationId: 'castThreeCard',
+  },
   { domain: 'tarot', method: 'post', path: '/tarot/daily', operationId: 'getDailyCard' },
-  { domain: 'human-design', method: 'post', path: '/human-design/type', operationId: 'calculateType' },
+  {
+    domain: 'human-design',
+    method: 'post',
+    path: '/human-design/type',
+    operationId: 'calculateType',
+  },
   {
     domain: 'human-design',
     method: 'post',

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { BookingEmbed } from '@/components/booking-embed';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
 
 export const metadata: Metadata = {
@@ -21,12 +22,8 @@ export default function BookPage() {
         lead="Have your birth date, birth time, and birth city ready. The birth time matters more than people expect, so it is worth the ten minutes it takes to find it."
       />
 
-      <section className="py-16 sm:py-24">
-        {url ? (
-          <BookingEmbed provider={provider} url={url} />
-        ) : (
-          <BookingSetupNotice />
-        )}
+      <Section>
+        {url ? <BookingEmbed provider={provider} url={url} /> : <BookingSetupNotice />}
 
         <p className="mt-10 text-center text-sm text-muted-foreground">
           Not sure which session to book?{' '}
@@ -35,7 +32,7 @@ export default function BookPage() {
           </Link>
           .
         </p>
-      </section>
+      </Section>
     </div>
   );
 }

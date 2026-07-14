@@ -15,47 +15,45 @@ export default function OpengraphImage() {
   const palette = PALETTES[siteConfig.palette];
 
   return new ImageResponse(
-    (
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          background: palette.background,
-          color: palette.foreground,
-          padding: '80px',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div
-            style={{
-              fontSize: 26,
-              letterSpacing: 6,
-              textTransform: 'uppercase',
-              color: palette.primary,
-            }}
-          >
-            {siteConfig.title}
-          </div>
-          <div style={{ marginTop: 28, fontSize: 52, lineHeight: 1.25, maxWidth: 940 }}>
-            {siteConfig.tagline}
-          </div>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        background: palette.background,
+        color: palette.foreground,
+        padding: '80px',
+      }}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div
+          style={{
+            fontSize: 26,
+            letterSpacing: 6,
+            textTransform: 'uppercase',
+            color: palette.primary,
+          }}
+        >
+          {siteConfig.title}
         </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <div style={{ fontSize: 44, color: palette.primary }}>{siteConfig.name}</div>
-          <div
-            style={{
-              width: 120,
-              height: 6,
-              background: palette.accent,
-            }}
-          />
+        <div style={{ marginTop: 28, fontSize: 52, lineHeight: 1.25, maxWidth: 940 }}>
+          {siteConfig.tagline}
         </div>
       </div>
-    ),
+
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ fontSize: 44, color: palette.primary }}>{siteConfig.name}</div>
+        <div
+          style={{
+            width: 120,
+            height: 6,
+            background: palette.accent,
+          }}
+        />
+      </div>
+    </div>,
     size,
   );
 }

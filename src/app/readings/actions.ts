@@ -9,9 +9,9 @@ import type {
   GetDailyHoroscopeResponse,
   NatalChartResponse,
 } from '@roxyapi/ui-react';
-import type { ReadingState } from '@/lib/reading-state';
 import { roxy } from '@/lib/roxy/client';
 import { tryUnwrap } from '@/lib/roxy/guard';
+import type { ReadingState } from '@/types';
 
 /**
  * Every free reading runs through here: the form posts, the server calls RoxyAPI with the site key, and the typed response goes back to a component that renders it. The key never reaches the browser, which is the whole reason these are Server Actions and not client fetches.
@@ -149,9 +149,7 @@ export async function tarotAction(
 ): Promise<ReadingState<CastThreeCardResponse>> {
   const question = text(form, 'question');
 
-  return toState(
-    roxy.tarot.castThreeCard({ body: question ? { question } : {} }),
-  );
+  return toState(roxy.tarot.castThreeCard({ body: question ? { question } : {} }));
 }
 
 /** Human Design birth data. The type card and the bodygraph read the same three fields. */

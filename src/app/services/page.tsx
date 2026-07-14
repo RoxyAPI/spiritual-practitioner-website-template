@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import { BookingCta } from '@/components/booking-cta';
 import { FaqAccordion } from '@/components/faq-accordion';
-import { PageHeader } from '@/components/page-header';
-import { serviceListJsonLd } from '@/lib/seo';
 import { JsonLd } from '@/components/json-ld';
+import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
+import { serviceListJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Sessions and Prices',
@@ -23,7 +24,7 @@ export default function ServicesPage() {
         lead="Prices are here rather than behind an enquiry form, because you should be able to decide in private whether this is for you."
       />
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <ul className="space-y-6">
           {siteConfig.services.map((service) => (
             <li
@@ -54,24 +55,26 @@ export default function ServicesPage() {
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:gap-16">
           <div>
             <p className="eyebrow text-primary">Before you book</p>
-            <h2 className="mt-3 font-display text-3xl sm:text-4xl">The questions people ask first</h2>
+            <h2 className="mt-3 font-display text-3xl sm:text-4xl">
+              The questions people ask first
+            </h2>
           </div>
           <FaqAccordion items={siteConfig.faq} />
         </div>
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta
           heading="Pick the session that fits the question"
           line="Still unsure which one? Write to me and describe the situation. I will tell you which reading fits, or whether none of them do."
         />
-      </section>
+      </Section>
     </div>
   );
 }

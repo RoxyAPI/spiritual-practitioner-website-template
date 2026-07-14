@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/contact-form';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
 
 export const metadata: Metadata = {
@@ -18,14 +19,17 @@ export default function ContactPage() {
         lead="If you are not sure which session fits, describe the situation in a few lines. I will tell you which one to book, or whether a reading is the wrong tool for it."
       />
 
-      <section className="grid gap-12 py-16 sm:py-24 md:grid-cols-[1.5fr_1fr] md:gap-16">
+      <Section containerClassName="grid gap-12 md:grid-cols-[1.5fr_1fr] md:gap-16">
         <ContactForm />
 
         <aside className="space-y-8 text-sm text-muted-foreground">
           {siteConfig.email ? (
             <div>
               <p className="eyebrow text-foreground">Email</p>
-              <a href={`mailto:${siteConfig.email}`} className="mt-3 block underline underline-offset-4">
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="mt-3 block underline underline-offset-4"
+              >
                 {siteConfig.email}
               </a>
             </div>
@@ -63,7 +67,7 @@ export default function ContactPage() {
             Messages go straight to the inbox above. Nothing you write here is stored on the site.
           </p>
         </aside>
-      </section>
+      </Section>
     </div>
   );
 }

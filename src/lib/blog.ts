@@ -1,22 +1,13 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { getFrontmatter } from 'next-mdx-remote-client/utils';
+import type { PostMeta } from '@/types';
 
 /**
  * The blog is a folder of files. Adding a post means dropping an `.mdx` file into `content/blog/`, and the index, the sitemap, and the social card follow it: no database, no CMS, no admin login to forget the password to.
  *
  * Writing rules and the frontmatter schema: `docs/blog.md`.
  */
-export interface PostMeta {
-  /** The filename, which is also the URL. */
-  slug: string;
-  title: string;
-  description: string;
-  /** ISO date. The index sorts on it, newest first. */
-  date: string;
-  /** Optional social card override. */
-  image?: string;
-}
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 

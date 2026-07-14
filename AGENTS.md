@@ -1,6 +1,10 @@
 # Agents Guide
 
-This is an MIT licensed RoxyAPI Template: a complete website for a spiritual practitioner (astrology, tarot, numerology, human design), built with Next.js 16, Tailwind v4, and shadcn/ui. It ships six free readings computed live by [RoxyAPI](https://roxyapi.com), a booking page, a services page, a file based blog, and SEO that generates itself from one config file. There is no database, no CMS, and no backend to run. You are most likely a coding agent helping a practitioner make this site their own. More Templates to fork: https://roxyapi.com/starters
+This is an MIT licensed RoxyAPI Template: a complete, self-hosted website for a spiritual practitioner, built with Next.js 16, Tailwind v4, and shadcn/ui. It is what a practitioner uses instead of renting a page builder, and they own every line of it.
+
+It ships free birth chart, three card tarot, daily horoscope, compatibility, life path, and human design readings, all computed live by [RoxyAPI](https://roxyapi.com), plus a card of the day, a booking page, a services page, a file based blog, and SEO that generates itself from one config file. There is no database, no CMS, and no backend to run.
+
+The readings are the point: they are what a page builder cannot do, they are what visitors share and come back for, and every one of them ends in a booking call to action. Protect that when you change anything. You are most likely a coding agent helping a practitioner make this site their own. More Templates to fork: https://roxyapi.com/starters
 
 ## Canonical RoxyAPI references (use these, do not guess)
 
@@ -18,7 +22,7 @@ Prefer these live sources over memory for any RoxyAPI path, field, SDK method, o
 - Get an API key at https://roxyapi.com/pricing
 - Copy `env.example` to `.env.local` and set `ROXYAPI_KEY`. That is the only secret in the project.
 - `npm install`, then `npm run dev`, then open http://localhost:3000
-- `npm test` runs the drift guards. `npm run typecheck` and `npm run lint` must both pass; they run on commit and on every pull request.
+- `npm run verify` runs the whole gate in the order CI runs it: format, lint, types, tests, keyless build. Run it before you push. The same order runs on commit and on push via lefthook.
 
 ## The task router
 
@@ -27,6 +31,7 @@ The specification lives in `docs/`. Read the file that owns the concern before c
 | If you are asked to... | Read |
 |---|---|
 | Change the name, bio, prices, services, FAQ, booking link, testimonials | `docs/config.md` |
+| Switch the palette (`rosewater`, `eucalyptus`, `kiln`, `moonlit`), or add a new one | `docs/design.md` (switching is one word in the config; adding one is five steps and all five are required) |
 | Change colours, fonts, spacing, the portrait | `docs/design.md` |
 | Add, remove, or restructure a page | `docs/pages.md` |
 | Add, remove, or change a free reading | `docs/readings.md` |
@@ -65,5 +70,8 @@ CI has no secrets, and a fork should be able to deploy before it has bought anyt
 
 - No apostrophes, no em dashes, and no double hyphens in any prose that a visitor or a reader of this repository will see.
 - Server Components by default. `'use client'` only for forms, the theme toggle, the mobile menu, the embeds, and the reading components.
+- **A page never sets a width, a gutter, or a section padding.** Compose `<Section>` (`src/components/section.tsx`); it owns the full-width band, the optional wash, the shared container, and the rhythm. Need a narrower measure? `<Section containerClassName="max-w-3xl">`. The site width is declared once, as `.site-container` in `globals.css`, and a test fails if anything re-declares it.
 - Reuse before you add. Check `src/lib/` and `src/components/` before writing a helper or a component that probably already exists.
+- **Types live in `src/types/index.ts` and nowhere else.** Import them as `@/types`. A type declared next to the first file that needed it is a type the next person redeclares slightly differently.
+- Structured data is typed with `schema-dts` (`satisfies WithContext<T>`), so an invalid Schema.org property fails typecheck instead of being silently ignored by Google.
 - No `as any`, no hand written interfaces for API responses, no dead code.

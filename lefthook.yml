@@ -1,22 +1,51 @@
-# Local quality gate. Mirrors .github/workflows/ci.yml so broken code never reaches a push.
-# Installed automatically by the package.json prepare script on npm install.
+# Local quality gate. Mirrors .github/workflows/ci.yml, so nothing that CI would reject can reach
+# a push. Installed automatically by the package.json prepare script on npm install.
+#
+# Order matters, and it is the cheapest-first order: formatting is mechanical and auto-fixed,
+# linting catches the framework mistakes, types catch the wrong shapes, tests catch the wrong
+# behaviour, and the build is the last and slowest word. Running them the other way round means
+# waiting two minutes for a build to tell you about a missing semicolon.
+
 pre-commit:
   parallel: true
   commands:
+    # Format and organize imports on staged files only, then re-stage what was fixed.
+    format:
+      glob: "*.{ts,tsx,json}"
+      run: npx biome check --fix --staged --no-errors-on-unmatched
+      stage_fixed: true
+
+    # Next.js and React rules (hooks, images, accessibility) that Biome does not cover.
+    lint:
+      glob: "*.{ts,tsx}"
+      run: npm run lint
+
+    # The whole project, not just staged files: a change in one file breaks types in another.
     typecheck:
       run: npm run typecheck
-    lint:
-      run: npm run lint
 
 pre-push:
   parallel: false
   commands:
+    format:
+      run: npm run check:ci
+      priority: 1
+
+    lint:
+      run: npm run lint
+      priority: 2
+
     typecheck:
       run: npm run typecheck
-      priority: 1
+      priority: 3
+
+    # The drift guards: config contract, palette tokens, structured data, error mapping.
     test:
       run: npm test
-      priority: 2
+      priority: 4
+
+    # Builds with NO api key on purpose: CI has no secrets, and a fork must be able to deploy
+    # before it has bought anything. If this needs a key, the site has a bug.
     build:
-      run: npm run build
-      priority: 3
+      run: env -u ROXYAPI_KEY npm run build
+      priority: 5

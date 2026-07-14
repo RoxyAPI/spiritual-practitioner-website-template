@@ -98,19 +98,37 @@ describe('the palette copy the social card renders from', () => {
     expect(Object.keys(PALETTES).sort()).toEqual([...PALETTES_IN_CSS].sort());
   });
 
-  it.each(PALETTES_IN_CSS)(
-    '%s matches the light block in globals.css, so the card can never drift from the site',
-    (name) => {
-      const body = block(`html[data-palette='${name}']`) ?? '';
+  it.each(
+    PALETTES_IN_CSS,
+  )('%s matches the light block in globals.css, so the card can never drift from the site', (name) => {
+    const body = block(`html[data-palette='${name}']`) ?? '';
 
-      for (const [token, hex] of Object.entries(PALETTES[name])) {
-        const declared = new RegExp(`--${token}\\s*:\\s*(#[0-9A-Fa-f]{6})`).exec(body)?.[1];
-        expect(declared?.toUpperCase(), `--${token} differs from src/lib/palettes.ts`).toBe(
-          hex.toUpperCase(),
-        );
-      }
-    },
-  );
+    for (const [token, hex] of Object.entries(PALETTES[name])) {
+      const declared = new RegExp(`--${token}\\s*:\\s*(#[0-9A-Fa-f]{6})`).exec(body)?.[1];
+      expect(declared?.toUpperCase(), `--${token} differs from src/lib/palettes.ts`).toBe(
+        hex.toUpperCase(),
+      );
+    }
+  });
+});
+
+describe('layout', () => {
+  it('declares the site measure exactly once, so every full-width band lines its content up with every other', () => {
+    const container = block('.site-container');
+    expect(container, 'missing the .site-container class').toBeDefined();
+    expect(container).toMatch(/max-w-\w+/);
+    expect(container).toMatch(/mx-auto/);
+
+    // Any component re-declaring the width is a second source of truth, and they drift.
+    const strays = ['section', 'site-header', 'site-footer', 'announcement-bar']
+      .map((name) => `../src/components/${name}.tsx`)
+      .filter((file) =>
+        readFileSync(fileURLToPath(new URL(file, import.meta.url)), 'utf8').includes('max-w-6xl'),
+      );
+    expect(strays, 'these re-declare the container width instead of using .site-container').toEqual(
+      [],
+    );
+  });
 });
 
 describe('typography', () => {

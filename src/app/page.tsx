@@ -5,6 +5,7 @@ import { BookingCta } from '@/components/booking-cta';
 import { CardOfTheDay } from '@/components/card-of-the-day';
 import { JsonLd } from '@/components/json-ld';
 import { PullQuote } from '@/components/pull-quote';
+import { Section } from '@/components/section';
 import { Button } from '@/components/ui/button';
 import { siteConfig } from '@/config/site.config';
 import { enabledReadings } from '@/lib/readings';
@@ -27,7 +28,7 @@ export default function HomePage() {
       <JsonLd data={personJsonLd()} />
       <JsonLd data={professionalServiceJsonLd()} />
 
-      <section className="wash grid items-center gap-12 py-16 sm:py-24 md:grid-cols-2 md:gap-16">
+      <Section wash="start" containerClassName="grid items-center gap-12 md:grid-cols-2 md:gap-16">
         <div>
           <p className="eyebrow text-primary">{siteConfig.title}</p>
           <h1 className="mt-5 font-display text-4xl leading-[1.15] sm:text-5xl">
@@ -65,9 +66,9 @@ export default function HomePage() {
             className="w-full rounded-3xl border border-border object-cover"
           />
         </div>
-      </section>
+      </Section>
 
-      <section className="grid gap-10 py-16 sm:py-24 md:grid-cols-[1fr_1.4fr] md:gap-16">
+      <Section containerClassName="grid gap-10 md:grid-cols-[1fr_1.4fr] md:gap-16">
         <h2 className="font-display text-3xl leading-tight sm:text-4xl">
           What a reading is, and what it is not
         </h2>
@@ -83,9 +84,9 @@ export default function HomePage() {
             </Link>
           </p>
         </div>
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="eyebrow text-primary">Sessions</p>
@@ -101,7 +102,10 @@ export default function HomePage() {
 
         <ul className="mt-12 grid gap-6 md:grid-cols-3">
           {services.map((service) => (
-            <li key={service.name} className="flex flex-col rounded-2xl border border-border bg-card p-8">
+            <li
+              key={service.name}
+              className="flex flex-col rounded-2xl border border-border bg-card p-8"
+            >
               <h3 className="font-display text-xl">{service.name}</h3>
               <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {service.description}
@@ -113,18 +117,18 @@ export default function HomePage() {
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
 
       {firstQuote ? (
-        <section className="py-16 sm:py-24">
+        <Section>
           <PullQuote {...firstQuote} />
-        </section>
+        </Section>
       ) : null}
 
       <CardOfTheDay />
 
       {readings.length > 0 ? (
-        <section className="wash py-16 sm:py-24">
+        <Section wash="start">
           <p className="eyebrow text-primary">Free Readings</p>
           <h2 className="mt-3 max-w-2xl font-display text-3xl sm:text-4xl">
             Start with something real, before you spend anything
@@ -156,17 +160,17 @@ export default function HomePage() {
               </li>
             ))}
           </ul>
-        </section>
+        </Section>
       ) : null}
 
       {secondQuote ? (
-        <section className="py-16 sm:py-24">
+        <Section>
           <PullQuote {...secondQuote} />
-        </section>
+        </Section>
       ) : null}
 
       {siteConfig.stats && siteConfig.stats.length > 0 ? (
-        <section className="py-16 sm:py-24">
+        <Section>
           <dl className="grid gap-10 text-center sm:grid-cols-3">
             {siteConfig.stats.map((stat) => (
               <div key={stat.label}>
@@ -178,15 +182,15 @@ export default function HomePage() {
               </div>
             ))}
           </dl>
-        </section>
+        </Section>
       ) : null}
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta
           heading="Bring me the question you cannot answer alone"
           line="Sessions are on video, recorded for you, and there is no upsell waiting at the end of them."
         />
-      </section>
+      </Section>
     </div>
   );
 }
