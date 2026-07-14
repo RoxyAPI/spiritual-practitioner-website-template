@@ -23,8 +23,8 @@ The config is a typed object. `tests/config-contract.test.ts` fails the build wh
 | `announcement` | `string?` | One-line dismissible bar above the header. Omit to hide. |
 | `newsletter` | `{ label, href }?` | Link-out to the practitioner hosted signup page (any provider). No embed, no integration. |
 | `faq` | `{ question, answer }[]` | FAQ page + JSON-LD `FAQPage`. |
-| `booking` | `{ provider, url }` | `provider: 'calcom' \| 'calendly'`. `url` = the public booking link. Renders the matching embed on `/book` ([integrations.md](./integrations.md)). |
-| `contact` | `{ web3formsKey }` | Web3Forms access key. It is a publishable key, safe in client code and in this file ([integrations.md](./integrations.md)). |
+| `booking` | `{ provider, url }` | `provider: 'calcom' \| 'calendly'`. `url` = the public booking link. Renders the matching embed on `/book` ([integrations.md](./integrations.md)). Ships empty: an empty `url` renders a setup card, never a broken embed, so the page is presentable before the fork has a scheduling account. |
+| `contact` | `{ web3formsKey }` | Web3Forms access key. It is a publishable key, safe in client code and in this file ([integrations.md](./integrations.md)). Ships as the placeholder `YOUR_WEB3FORMS_ACCESS_KEY`; the form renders but tells the visitor it is not connected until a real key replaces it. |
 | `palette` | `PaletteKey` | One of the prebuilt palette keys defined in [design.md](./design.md). Sets the `data-palette` attribute on `<html>`. |
 | `readings` | `Record<ReadingKey, boolean>` | On/off per free reading + `cardOfTheDay` for the home widget. Keys and behavior: [readings.md](./readings.md). |
 

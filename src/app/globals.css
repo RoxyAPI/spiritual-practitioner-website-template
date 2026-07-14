@@ -1,0 +1,329 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans-var);
+  --font-display: var(--font-display-var);
+  --font-script: var(--font-script-var);
+  --font-heading: var(--font-display-var);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/*
+Palettes. `config.palette` writes `data-palette` on <html>, and next-themes writes `.dark`,
+so each palette owns two blocks: `html[data-palette='x']` and `html[data-palette='x'].dark`.
+Both selectors outrank a bare `.dark`, which is why no palette colour is ever declared there.
+Adding a palette means adding both blocks plus the key in the config union, and the
+design-tokens test fails until every token below is present in both.
+*/
+:root {
+  --radius: 0.875rem;
+  --destructive: #B23A38;
+  --background: #FBF6F3;
+  --foreground: #3E2A2C;
+  --card: #F5E8E0;
+  --card-foreground: #3E2A2C;
+  --popover: #F5E8E0;
+  --popover-foreground: #3E2A2C;
+  --primary: #914955;
+  --primary-foreground: #FDF4F1;
+  --secondary: #F5E8E0;
+  --secondary-foreground: #3E2A2C;
+  --muted: #F5E8E0;
+  --muted-foreground: #7E625F;
+  --accent: #B89D62;
+  --accent-foreground: #3E2A2C;
+  --border: #EAD9D2;
+  --input: #EAD9D2;
+  --ring: #914955;
+}
+
+.dark {
+  --destructive: #E4736B;
+}
+
+html[data-palette='rosewater'] {
+  --background: #FBF6F3;
+  --foreground: #3E2A2C;
+  --card: #F5E8E0;
+  --card-foreground: #3E2A2C;
+  --popover: #F5E8E0;
+  --popover-foreground: #3E2A2C;
+  --primary: #914955;
+  --primary-foreground: #FDF4F1;
+  --secondary: #F5E8E0;
+  --secondary-foreground: #3E2A2C;
+  --muted: #F5E8E0;
+  --muted-foreground: #7E625F;
+  --accent: #B89D62;
+  --accent-foreground: #3E2A2C;
+  --border: #EAD9D2;
+  --input: #EAD9D2;
+  --ring: #914955;
+}
+
+html[data-palette='rosewater'].dark {
+  --background: #231619;
+  --foreground: #F2E4DF;
+  --card: #2E1E22;
+  --card-foreground: #F2E4DF;
+  --popover: #2E1E22;
+  --popover-foreground: #F2E4DF;
+  --primary: #D9A2A6;
+  --primary-foreground: #33191E;
+  --secondary: #2E1E22;
+  --secondary-foreground: #F2E4DF;
+  --muted: #2E1E22;
+  --muted-foreground: #B39698;
+  --accent: #CDB37C;
+  --accent-foreground: #33191E;
+  --border: #402C31;
+  --input: #402C31;
+  --ring: #D9A2A6;
+}
+
+html[data-palette='eucalyptus'] {
+  --background: #F8F7F2;
+  --foreground: #22281F;
+  --card: #EDEFE6;
+  --card-foreground: #22281F;
+  --popover: #EDEFE6;
+  --popover-foreground: #22281F;
+  --primary: #4C7060;
+  --primary-foreground: #F4F7F1;
+  --secondary: #EDEFE6;
+  --secondary-foreground: #22281F;
+  --muted: #EDEFE6;
+  --muted-foreground: #666D63;
+  --accent: #A18267;
+  --accent-foreground: #F4F7F1;
+  --border: #DCE0D3;
+  --input: #DCE0D3;
+  --ring: #4C7060;
+}
+
+html[data-palette='eucalyptus'].dark {
+  --background: #191E19;
+  --foreground: #E9EDE3;
+  --card: #232A23;
+  --card-foreground: #E9EDE3;
+  --popover: #232A23;
+  --popover-foreground: #E9EDE3;
+  --primary: #9CC0AC;
+  --primary-foreground: #16241C;
+  --secondary: #232A23;
+  --secondary-foreground: #E9EDE3;
+  --muted: #232A23;
+  --muted-foreground: #9FA89B;
+  --accent: #C2A87E;
+  --accent-foreground: #16241C;
+  --border: #313A31;
+  --input: #313A31;
+  --ring: #9CC0AC;
+}
+
+html[data-palette='kiln'] {
+  --background: #FAF4EA;
+  --foreground: #322820;
+  --card: #EFE6D6;
+  --card-foreground: #322820;
+  --popover: #EFE6D6;
+  --popover-foreground: #322820;
+  --primary: #A44A24;
+  --primary-foreground: #FDF3EA;
+  --secondary: #EFE6D6;
+  --secondary-foreground: #322820;
+  --muted: #EFE6D6;
+  --muted-foreground: #74634F;
+  --accent: #CBA378;
+  --accent-foreground: #322820;
+  --border: #E6D8C2;
+  --input: #E6D8C2;
+  --ring: #A44A24;
+}
+
+html[data-palette='kiln'].dark {
+  --background: #211710;
+  --foreground: #F2E7D9;
+  --card: #2C2016;
+  --card-foreground: #F2E7D9;
+  --popover: #2C2016;
+  --popover-foreground: #F2E7D9;
+  --primary: #D98D5F;
+  --primary-foreground: #2E1608;
+  --secondary: #2C2016;
+  --secondary-foreground: #F2E7D9;
+  --muted: #2C2016;
+  --muted-foreground: #B49D87;
+  --accent: #D8B98C;
+  --accent-foreground: #2E1608;
+  --border: #3D2E20;
+  --input: #3D2E20;
+  --ring: #D98D5F;
+}
+
+html[data-palette='moonlit'] {
+  --background: #FAF6EC;
+  --foreground: #14232E;
+  --card: #F1EADB;
+  --card-foreground: #14232E;
+  --popover: #F1EADB;
+  --popover-foreground: #14232E;
+  --primary: #254B5A;
+  --primary-foreground: #F6F2E6;
+  --secondary: #F1EADB;
+  --secondary-foreground: #14232E;
+  --muted: #F1EADB;
+  --muted-foreground: #5C6A76;
+  --accent: #B89D62;
+  --accent-foreground: #14232E;
+  --border: #E4DBC6;
+  --input: #E4DBC6;
+  --ring: #254B5A;
+}
+
+html[data-palette='moonlit'].dark {
+  --background: #0B1826;
+  --foreground: #EFE7D3;
+  --card: #142331;
+  --card-foreground: #EFE7D3;
+  --popover: #142331;
+  --popover-foreground: #EFE7D3;
+  --primary: #C9A96B;
+  --primary-foreground: #16222E;
+  --secondary: #142331;
+  --secondary-foreground: #EFE7D3;
+  --muted: #142331;
+  --muted-foreground: #92A4B2;
+  --accent: #99BAD7;
+  --accent-foreground: #16222E;
+  --border: #24384A;
+  --input: #24384A;
+  --ring: #C9A96B;
+}
+
+/*
+Roxy UI reads its own `--roxy-*` tokens, so the reading components inherit the active
+palette instead of looking pasted in from another site. `html:root` outranks the library
+defaults in both light and dark, and every value points at a palette token, so a palette
+switch carries the components with it. Token reference: node_modules/@roxyapi/ui-react/README.md
+*/
+html:root {
+  --roxy-bg: var(--card);
+  /* The card face and the chart plate paint from --roxy-surface. Miss it and the readings sit on a white rectangle in the middle of the palette. */
+  --roxy-surface: var(--card);
+  --roxy-fg: var(--foreground);
+  --roxy-muted: var(--muted-foreground);
+  --roxy-border: var(--border);
+  --roxy-accent: var(--primary);
+  --roxy-accent-ink: var(--primary);
+  --roxy-ring: var(--ring);
+  --roxy-font-sans: var(--font-sans-var);
+  --roxy-radius-md: var(--radius);
+  --roxy-radius-lg: calc(var(--radius) * 1.8);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-normal tracking-tight;
+  }
+}
+
+@layer components {
+  /* Uppercase micro-label above section headings and inside buttons. */
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.2em];
+  }
+
+  /* The script face is decorative. It is legible only large, so it is capped at accent sizes. */
+  .script {
+    @apply font-script text-2xl leading-tight;
+  }
+
+  /* One soft wash per section, bleeding from a corner. Never a two-stop diagonal gradient. */
+  .wash {
+    position: relative;
+    isolation: isolate;
+  }
+  .wash::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+      70% 60% at 15% 0%,
+      color-mix(in srgb, var(--accent) 22%, transparent),
+      transparent 70%
+    );
+  }
+  .wash-end::before {
+    background: radial-gradient(
+      65% 55% at 90% 100%,
+      color-mix(in srgb, var(--primary) 14%, transparent),
+      transparent 70%
+    );
+  }
+}
+
+/*
+Film grain over the whole page. This is what keeps the surface feeling printed rather than
+rendered, and it is the reason the design needs no gradient meshes. Pointer events are off,
+so it never intercepts a click.
+*/
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

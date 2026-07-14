@@ -8,7 +8,7 @@ House direction: **expressive minimalism**. Light cream base, one textural syste
 
 Four prebuilt palettes, selected by `config.palette` ([config.md](./config.md)) which sets `data-palette` on `<html>`. Dark mode = the `.dark` class from next-themes; each palette defines both. Tokens map 1:1 to the shadcn CSS variables in `globals.css` (`--background`, `--card`, `--foreground`, `--muted-foreground`, `--primary`, `--primary-foreground`, `--accent`, `--border`, `--ring` follows `--primary`). `tests/design-tokens.test.ts` asserts every selector and variable exists ([code.md](./code.md)).
 
-Contrast: every foreground/background pair is WCAG AAA; every primary pair is AA or better; muted text is AA at body sizes, so use full foreground below 14px. Re-verify contrast if any value changes.
+Contrast: every foreground/background pair is WCAG AAA, and every primary and muted pair is AA or better. The binding constraint is muted text on the CARD surface, not on the page background: the card is the darker of the two, so a muted value that passes on the background can still fail inside a card. Check muted against card whenever a value changes, and run the accessibility pass (`docs/code.md`) rather than trusting the eye.
 
 ### `rosewater` (default). Romantic, tender, warm.
 
@@ -17,7 +17,7 @@ Contrast: every foreground/background pair is WCAG AAA; every primary pair is AA
 | background | `#FBF6F3` | `#231619` |
 | card | `#F5E8E0` | `#2E1E22` |
 | foreground | `#3E2A2C` | `#F2E4DF` |
-| muted-foreground | `#856864` | `#B39698` |
+| muted-foreground | `#7E625F` | `#B39698` |
 | primary | `#914955` | `#D9A2A6` |
 | primary-foreground | `#FDF4F1` | `#33191E` |
 | accent | `#B89D62` | `#CDB37C` |
@@ -30,7 +30,7 @@ Contrast: every foreground/background pair is WCAG AAA; every primary pair is AA
 | background | `#F8F7F2` | `#191E19` |
 | card | `#EDEFE6` | `#232A23` |
 | foreground | `#22281F` | `#E9EDE3` |
-| muted-foreground | `#6E756A` | `#9FA89B` |
+| muted-foreground | `#666D63` | `#9FA89B` |
 | primary | `#4C7060` | `#9CC0AC` |
 | primary-foreground | `#F4F7F1` | `#16241C` |
 | accent | `#A18267` | `#C2A87E` |
@@ -43,7 +43,7 @@ Contrast: every foreground/background pair is WCAG AAA; every primary pair is AA
 | background | `#FAF4EA` | `#211710` |
 | card | `#EFE6D6` | `#2C2016` |
 | foreground | `#322820` | `#F2E7D9` |
-| muted-foreground | `#837059` | `#B49D87` |
+| muted-foreground | `#74634F` | `#B49D87` |
 | primary | `#A44A24` | `#D98D5F` |
 | primary-foreground | `#FDF3EA` | `#2E1608` |
 | accent | `#CBA378` | `#D8B98C` |
@@ -56,7 +56,7 @@ Contrast: every foreground/background pair is WCAG AAA; every primary pair is AA
 | background | `#FAF6EC` | `#0B1826` |
 | card | `#F1EADB` | `#142331` |
 | foreground | `#14232E` | `#EFE7D3` |
-| muted-foreground | `#5F6E7A` | `#92A4B2` |
+| muted-foreground | `#5C6A76` | `#92A4B2` |
 | primary | `#254B5A` | `#C9A96B` |
 | primary-foreground | `#F6F2E6` | `#16222E` |
 | accent | `#B89D62` | `#99BAD7` |
@@ -101,28 +101,36 @@ Hand-finished accents (small doses): a hand-drawn SVG underline stroke beneath t
 ## Imagery
 
 - Practitioner portrait: `public/portrait.jpg`, **3:4 portrait, 1200x1600px** (displays at up to 600px wide, crisp on retina). `next/image` with `sizes` set. Alt text from `config.photo.alt`.
-- The shipped placeholder is a bundled stock portrait (license permits redistribution); the README replacement step tells the fork to overwrite `public/portrait.jpg` with the same 1200x1600 dimensions.
+- The shipped placeholder is an abstract figure drawn in the palette, not a stock photograph of a real person. That keeps the template free of a licence to track and free of any suggestion that a real face endorses the practice. A fork overwrites `public/portrait.jpg` with its own photo at the same 1200x1600 dimensions and changes nothing else.
 - Blog images live in `public/blog/`, 16:9, under 200KB.
 - No decorative stock photo grids. The portrait, the readings, and the type do the talking.
 
 ## Roxy component theming
 
-`@roxyapi/ui-react` components read `--roxy-*` tokens (full list: `node_modules/@roxyapi/ui/THEMING.md`). Map them once in `globals.css` so readings inherit the active palette automatically:
+`@roxyapi/ui-react` components read `--roxy-*` tokens (full list: `node_modules/@roxyapi/ui-react/README.md`). Map them once in `globals.css` so readings inherit the active palette automatically:
 
 ```css
-:root {
+html:root {
   --roxy-bg: var(--card);
+  --roxy-surface: var(--card);
   --roxy-fg: var(--foreground);
   --roxy-muted: var(--muted-foreground);
-  --roxy-accent: var(--primary);
-  --roxy-accent-ink: var(--primary-foreground);
   --roxy-border: var(--border);
+  --roxy-accent: var(--primary);
+  --roxy-accent-ink: var(--primary);
   --roxy-ring: var(--ring);
-  --roxy-font-sans: var(--font-sans);
+  --roxy-font-sans: var(--font-sans-var);
+  --roxy-radius-md: var(--radius);
 }
 ```
 
-Without this mapping the reading components look pasted in from another site.
+Three rules the token names hide.
+
+- `--roxy-surface` is the token that paints the card face and the chart plate. Map it or every reading renders as a white rectangle sitting in the middle of the palette, which is the one bug that makes the components look pasted in.
+- `--roxy-accent-ink` is an accent shade that has to stay legible ON the page (chart strokes, active labels), so it maps to `--primary`, never to `--primary-foreground`.
+- The selector is `html:root`, not `:root`, so the mapping outranks the library defaults in dark mode as well as in light.
+
+`tests/design-tokens.test.ts` asserts each of these is present. If a future version reads a token that is not in the map, it will show up as a component that ignores the palette: open the element, list the `--roxy-*` variables its stylesheet reads, and map the missing one.
 
 ## Dark mode
 

@@ -1,0 +1,22 @@
+# Local quality gate. Mirrors .github/workflows/ci.yml so broken code never reaches a push.
+# Installed automatically by the package.json prepare script on npm install.
+pre-commit:
+  parallel: true
+  commands:
+    typecheck:
+      run: npm run typecheck
+    lint:
+      run: npm run lint
+
+pre-push:
+  parallel: false
+  commands:
+    typecheck:
+      run: npm run typecheck
+      priority: 1
+    test:
+      run: npm test
+      priority: 2
+    build:
+      run: npm run build
+      priority: 3

@@ -1,0 +1,23 @@
+name: Spec drift
+
+# Weekly check that every RoxyAPI endpoint this template calls still exists in the
+# live OpenAPI spec. It hits the public spec only, so it needs no secrets. A failure
+# here means the template needs updating, not that a contributor broke something,
+# which is why it is not part of the pull request checks.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run test:drift
