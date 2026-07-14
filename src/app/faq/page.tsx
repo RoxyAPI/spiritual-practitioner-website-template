@@ -3,6 +3,7 @@ import { BookingCta } from '@/components/booking-cta';
 import { FaqAccordion } from '@/components/faq-accordion';
 import { JsonLd } from '@/components/json-ld';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
 import { faqJsonLd } from '@/lib/seo';
 
@@ -23,17 +24,17 @@ export default function FaqPage() {
         lead="If your question is not here, write to me. I would rather answer it than have you guess."
       />
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <div className="max-w-3xl">
           {/* The accordion renders each question as an h3, so without this the page would jump from h1 to h3. */}
           <h2 className="sr-only">Questions and answers</h2>
           <FaqAccordion items={siteConfig.faq} />
         </div>
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta line="Answered? Then the only thing left is to pick a time." />
-      </section>
+      </Section>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
 import { siteConfig } from '@/config/site.config';
-import { READINGS, enabledReadings } from '@/lib/readings';
+import { enabledReadings, READINGS } from '@/lib/readings';
 
 /**
  * A fork edits `site.config.ts` and nothing else, so this suite is the contract that says the
@@ -77,8 +77,12 @@ describe('reading toggles', () => {
   it('has a page behind every toggle that is switched on', () => {
     for (const reading of enabledReadings()) {
       const segment = reading.href.replace('/readings/', '');
-      const page = fileURLToPath(new URL(`../src/app/readings/${segment}/page.tsx`, import.meta.url));
-      expect(existsSync(page), `${reading.key} is enabled but ${reading.href} has no page`).toBe(true);
+      const page = fileURLToPath(
+        new URL(`../src/app/readings/${segment}/page.tsx`, import.meta.url),
+      );
+      expect(existsSync(page), `${reading.key} is enabled but ${reading.href} has no page`).toBe(
+        true,
+      );
     }
   });
 

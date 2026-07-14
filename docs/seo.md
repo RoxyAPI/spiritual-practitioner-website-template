@@ -11,7 +11,9 @@ Every SEO surface derives from `site.config.ts` ([config.md](./config.md)). The 
 
 ## Structured data (JSON-LD)
 
-Builders live in `src/lib/seo.ts`, pure functions from config, injected as `<script type="application/ld+json">` by the page that owns them:
+Builders live in `src/lib/seo.ts`, pure functions from config, injected as `<script type="application/ld+json">` by the page that owns them.
+
+Every builder ends in `satisfies WithContext<T>`, where `T` is a Schema.org type from `schema-dts`. A misspelled property or a value of the wrong shape is then a TYPE ERROR at build time rather than a block search engines quietly discard. Do not hand-write a schema object without it.
 
 | Type | Source fields | Injected on |
 |---|---|---|

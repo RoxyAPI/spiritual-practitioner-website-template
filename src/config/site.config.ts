@@ -8,67 +8,7 @@
  * Full field reference: `docs/config.md`.
  */
 
-/** Prebuilt colour palettes. Token tables and contrast notes: `docs/design.md`. */
-export type PaletteKey = 'rosewater' | 'eucalyptus' | 'kiln' | 'moonlit';
-
-/** A free reading that has its own page. The Card of the Day is a home page widget, not a page, so it is toggled separately. */
-export type ReadingKey =
-  | 'birthChart'
-  | 'horoscope'
-  | 'compatibility'
-  | 'lifePath'
-  | 'tarot'
-  | 'humanDesign';
-
-/** Every switch under `readings`: the six reading pages plus the home page Card of the Day. */
-export type ReadingToggleKey = ReadingKey | 'cardOfTheDay';
-
-export interface SiteConfig {
-  /** Practitioner display name. Titles, structured data, social card, footer. */
-  name: string;
-  /** Profession line, for example "Astrologer and Tarot Reader". */
-  title: string;
-  /** One sentence promise. Hero headline and default meta description. Aim for 140 to 160 characters. */
-  tagline: string;
-  /** Absolute deployed URL, no trailing slash. Sitemap, robots, canonicals, and social cards all derive from it. */
-  siteUrl: string;
-  /** The portrait in `public/`. Replace the file, keep the dimensions (1200x1600). */
-  photo: { src: string; alt: string };
-  /** `short` runs on the home page, `long` is the About page, one string per paragraph. */
-  bio: { short: string; long: string[] };
-  /** Shown on the contact page when set. */
-  email?: string;
-  /** City and country only. Never a street address. */
-  location?: string;
-  /** Footer and About links. Also becomes `sameAs` in the structured data. */
-  socials: { label: string; href: string }[];
-  /** The offer. `price` is a display string. `paymentLink` is your own payment page, if you take payment outside the booking flow. */
-  services: {
-    name: string;
-    description: string;
-    duration: string;
-    price: string;
-    paymentLink?: string;
-  }[];
-  /** Interleaved through the home page as pull-quotes. An empty array hides the section and the page. */
-  testimonials: { quote: string; name: string; detail?: string }[];
-  /** Optional trust strip on the home and About pages. */
-  stats?: { value: string; label: string }[];
-  /** Optional dismissible line above the header. */
-  announcement?: string;
-  /** Optional link out to a signup page you host anywhere. No embed, no integration. */
-  newsletter?: { label: string; href: string };
-  /** FAQ page and FAQ structured data. Answer the objections that come up before a booking. */
-  faq: { question: string; answer: string }[];
-  /** Your public scheduling link. Leave `url` empty until you have one: the booking page then shows a setup card instead of a broken embed. Providers: `docs/integrations.md`. */
-  booking: { provider: 'calcom' | 'calendly'; url: string };
-  /** Web3Forms access key. It is publishable by design and routes mail to one inbox. */
-  contact: { web3formsKey: string };
-  /** One of the prebuilt palettes. Sets `data-palette` on the document. */
-  palette: PaletteKey;
-  /** Turn each free reading on or off. Off means the page 404s and the link disappears everywhere. */
-  readings: Record<ReadingToggleKey, boolean>;
-}
+import type { SiteConfig } from '@/types';
 
 export const siteConfig: SiteConfig = {
   name: 'Elena Voss',
@@ -192,17 +132,49 @@ export const siteConfig: SiteConfig = {
     },
   ],
 
+  /**
+   * Your scheduling link. `provider` is `'calcom'` or `'calendly'`; both embed for free.
+   *
+   * @remarks `url` ships empty on purpose. While it is empty the booking page shows a short setup card instead of a broken embed, so the site is presentable before you have a scheduling account. Paste the public link (for example `https://cal.com/your-name/reading`) and the scheduler appears. Comparison of the two providers: `docs/integrations.md`.
+   */
   booking: {
     provider: 'calcom',
     url: '',
   },
 
+  /**
+   * Web3Forms access key, which is what makes the contact form work with no backend.
+   *
+   * @remarks Get one free at web3forms.com; it is emailed to you in a minute. This key is publishable by design (it only routes mail to one inbox), which is why it lives here rather than in an environment variable, and why deploying this site needs exactly one secret. Until you replace the placeholder the form renders but tells the visitor it is not connected.
+   */
   contact: {
     web3formsKey: 'YOUR_WEB3FORMS_ACCESS_KEY',
   },
 
+  /**
+   * The colour palette. Change this one word and every page, every reading component, and the social card change with it.
+   *
+   * Four are built in, each with a light and a dark variant, all contrast checked:
+   *
+   * - `'rosewater'` (default): blush and deep rose with champagne gold. Romantic, tender, warm.
+   * - `'eucalyptus'`: soft sage and green with a warm clay accent. Grounded, restorative, calm.
+   * - `'kiln'`: terracotta and clay on warm cream. Earthy, handmade, rooted in craft.
+   * - `'moonlit'`: deep ink blue and gold. Celestial and candlelit, without a hint of purple.
+   *
+   * @remarks Editing a colour, or adding a fifth palette, is a bigger job than editing this line: the tokens live in `globals.css` and a test holds them to the contrast rules. Full token tables and that procedure: `docs/design.md`.
+   *
+   * @example Switch the whole site to the night palette.
+   * ```ts
+   * palette: 'moonlit',
+   * ```
+   */
   palette: 'rosewater',
 
+  /**
+   * Which free readings the site offers. Every one is on by default.
+   *
+   * @remarks Switch one to `false` and its page returns 404 and its link disappears from the header, the mobile menu, the footer, the home page grid, and the sitemap. There is nothing else to clean up. `cardOfTheDay` is not a page: it is the daily tarot card on the home page. What each reading asks the visitor for: `docs/readings.md`.
+   */
   readings: {
     birthChart: true,
     horoscope: true,

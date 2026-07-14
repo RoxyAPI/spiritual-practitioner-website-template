@@ -2,10 +2,10 @@
 
 import { RoxyTarotSpread } from '@roxyapi/ui-react';
 import { useActionState } from 'react';
+import { tarotAction } from '@/app/readings/actions';
 import { ReadingError, ReadingResult, SubmitButton } from '@/components/readings/parts';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { tarotAction } from '@/app/readings/actions';
 import { IDLE } from '@/lib/reading-state';
 
 export function TarotForm() {

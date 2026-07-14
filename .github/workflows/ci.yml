@@ -9,14 +9,23 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run typecheck
-      - run: npm run lint
-      - run: npm test
+
+      # Same order as the local hooks (lefthook.yml): cheapest signal first, slowest last.
+      - name: Format and imports
+        run: npm run check:ci
+      - name: Lint
+        run: npm run lint
+      - name: Types
+        run: npm run typecheck
+      - name: Tests
+        run: npm test
+
       # No secrets here on purpose: the site reads its key at request time, never at build time.
-      - run: npm run build
+      - name: Build without an API key
+        run: npm run build

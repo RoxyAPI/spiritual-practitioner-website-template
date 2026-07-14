@@ -2,6 +2,8 @@
 
 Route inventory, per-page anatomy, and the conversion structure. The page sequence follows researched service-business patterns: hero transformation promise, empathy, method, proof, one repeated primary action. Roughly 80 percent of visitors are browsing, 15 percent evaluating, 5 percent ready to book, so pages serve all three and never plaster booking buttons on every block. **One primary CTA per section, always the same action: book.**
 
+Every page is a stack of `<Section>` elements and nothing else: the Section owns the full-width band, the container, and the rhythm, so a page never sets a width or a padding. Layout rule and the reason for it: [design.md](./design.md).
+
 ## Route table
 
 | Route | Page | Config fields | Notes |

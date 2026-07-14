@@ -8,13 +8,7 @@ import { useEffect } from 'react';
  *
  * @remarks Custom Elements and third party widget scripts both need the DOM, so this is a client component.
  */
-export function BookingEmbed({
-  provider,
-  url,
-}: {
-  provider: 'calcom' | 'calendly';
-  url: string;
-}) {
+export function BookingEmbed({ provider, url }: { provider: 'calcom' | 'calendly'; url: string }) {
   if (provider === 'calendly') return <CalendlyEmbed url={url} />;
 
   // Cal.com takes the `username/event-type` part of the link, not the whole URL.

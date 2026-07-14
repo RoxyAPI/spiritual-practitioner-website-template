@@ -2,7 +2,7 @@
 
 `src/config/site.config.ts` is the single customization surface. Editing it plus replacing one photo rebrands the entire site: pages, navigation, SEO, structured data, social cards, booking. No component edits needed for a standard fork.
 
-The config is a typed object. `tests/config-contract.test.ts` fails the build when it drifts from this schema ([code.md](./code.md)).
+The config is a typed object. Its type (`SiteConfig`) lives in `src/types/index.ts` with every other type the site declares, so the file a practitioner edits stays pure data. `tests/config-contract.test.ts` fails the build when it drifts from this schema ([code.md](./code.md)).
 
 ## Schema
 
@@ -50,4 +50,4 @@ The config is a typed object. `tests/config-contract.test.ts` fails the build wh
 - Seed values ship as a complete believable example practice so every surface renders on first clone. Forks overwrite, never delete fields.
 - Display strings only; no markup in config values.
 - The only secret in the project is `ROXYAPI_KEY` in `.env.local`. Nothing secret ever goes in this file.
-- Adding a config field: extend the schema type, wire the consumer, update this table, extend the contract test. All four or nothing.
+- Adding a config field: extend `SiteConfig` in `src/types/index.ts`, wire the consumer, update this table, extend the contract test. All four or nothing.

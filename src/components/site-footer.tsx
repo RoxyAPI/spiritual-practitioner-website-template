@@ -17,7 +17,7 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-24 border-t border-border">
-      <div className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6">
+      <div className="site-container py-16">
         <div className="grid gap-12 md:grid-cols-3">
           <div className="space-y-4">
             <p className="font-display text-xl">{siteConfig.name}</p>

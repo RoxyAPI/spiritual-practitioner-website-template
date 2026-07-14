@@ -12,10 +12,12 @@ src/
     api/cities/route.ts   server proxy for city autocomplete
     sitemap.ts robots.ts opengraph-image.tsx
   components/
+    section.tsx           THE layout primitive: full-width band + shared container + rhythm
     ui/                   shadcn primitives (generated, do not hand edit)
     roxy/                 'use client' boundaries wrapping @roxyapi/ui-react
     ...                   navbar, footer, theme-toggle, booking-cta, api-key-missing
   config/site.config.ts   THE customization file (config.md)
+  types/index.ts          EVERY type the site declares. Import as `@/types`, never redeclare
   lib/roxy/client.ts      SDK singleton, server only
   lib/roxy/guard.ts       unwrap/tryUnwrap error mapping
 content/blog/*.mdx        blog posts (blog.md)
@@ -68,10 +70,16 @@ export const hasApiKey = Boolean(key);
 | Script | Runs |
 |---|---|
 | `dev` / `build` / `start` | Next.js |
+| `format` | Biome, writes |
+| `check` | Biome with fixes: formatting + import order |
+| `check:ci` | Biome in verify mode, no writes. What CI runs |
+| `lint` | ESLint: the Next.js and React rules |
 | `typecheck` | `tsc --noEmit` |
-| `lint` | `eslint` |
 | `test` | `vitest run` (excludes `spec-drift`) |
 | `test:drift` | the spec drift suite (scheduled workflow only) |
+| `verify` | the whole gate, in order. Run before pushing |
 | `prepare` | `lefthook install` |
 
-Quality checks run on commit and push (lefthook) and on every PR (GitHub Actions): typecheck, lint, test, build. Keep them green; they are the contract.
+**Two tools, one job each.** Biome formats and orders imports. ESLint owns the Next.js and React rules Biome does not cover (hooks, images, accessibility). The Biome linter is switched off in `biome.json` so the two never argue about the same line.
+
+**The order is fixed and cheapest-first**: format, lint, types, tests, build. The same order runs on commit and on push (`lefthook.yml`) and in CI (`.github/workflows/ci.yml`). A two-minute build should never be the thing that tells you about a missing semicolon.

@@ -6,10 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "format": "biome format --write .",
+    "check": "biome check . --fix",
+    "check:ci": "biome ci .",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --exclude tests/spec-drift.test.ts",
     "test:drift": "vitest run tests/spec-drift.test.ts",
+    "verify": "npm run check:ci && npm run lint && npm run typecheck && npm test && npm run build",
     "prepare": "lefthook install"
   },
   "dependencies": {
@@ -31,16 +35,21 @@
     "tw-animate-css": "^1.4.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^22.20.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "lefthook": "^2.1.10",
+    "schema-dts": "^2.0.0",
     "shadcn": "^4.13.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "postcss": "^8.5.10"
   }
 }

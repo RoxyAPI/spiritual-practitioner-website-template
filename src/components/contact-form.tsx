@@ -65,7 +65,8 @@ export function ContactForm() {
 
     setStatus({
       state: 'failed',
-      message: result?.message ?? 'The message could not be sent. Please try again, or write by email.',
+      message:
+        result?.message ?? 'The message could not be sent. Please try again, or write by email.',
     });
   }
 

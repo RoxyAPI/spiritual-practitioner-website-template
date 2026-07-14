@@ -27,7 +27,10 @@ export function SubmitButton({ children }: { children: string }) {
 /** One place for a failed reading to speak, so no page invents its own error styling. */
 export function ReadingError({ message }: { message: string }) {
   return (
-    <p role="alert" className="rounded-xl border border-destructive/40 bg-card p-4 text-sm text-destructive">
+    <p
+      role="alert"
+      className="rounded-xl border border-destructive/40 bg-card p-4 text-sm text-destructive"
+    >
       {message}
     </p>
   );
@@ -35,5 +38,7 @@ export function ReadingError({ message }: { message: string }) {
 
 /** The panel a finished reading lands in. Keeps every reading the same width and rhythm. */
 export function ReadingResult({ children }: { children: React.ReactNode }) {
-  return <div className="mt-12 rounded-2xl border border-border bg-card p-4 sm:p-8">{children}</div>;
+  return (
+    <div className="mt-12 rounded-2xl border border-border bg-card p-4 sm:p-8">{children}</div>
+  );
 }

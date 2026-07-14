@@ -11,12 +11,17 @@ export const mdxComponents: MDXComponents = {
   h2: (props) => <h2 className="mt-14 font-display text-3xl" {...props} />,
   h3: (props) => <h3 className="mt-10 font-display text-2xl" {...props} />,
   p: (props) => <p className="mt-6 leading-relaxed text-muted-foreground" {...props} />,
-  ul: (props) => <ul className="mt-6 space-y-3 pl-5 text-muted-foreground [&>li]:list-disc" {...props} />,
+  ul: (props) => (
+    <ul className="mt-6 space-y-3 pl-5 text-muted-foreground [&>li]:list-disc" {...props} />
+  ),
   ol: (props) => (
     <ol className="mt-6 space-y-3 pl-5 text-muted-foreground [&>li]:list-decimal" {...props} />
   ),
   blockquote: (props) => (
-    <blockquote className="mt-8 border-l-2 border-accent pl-6 font-display text-xl italic" {...props} />
+    <blockquote
+      className="mt-8 border-l-2 border-accent pl-6 font-display text-xl italic"
+      {...props}
+    />
   ),
   a: ({ href = '', ...props }) =>
     href.startsWith('/') ? (

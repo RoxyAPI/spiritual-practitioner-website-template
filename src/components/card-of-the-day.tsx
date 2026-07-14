@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { RoxyTarotCard } from '@/components/roxy/tarot-card';
+import { Section } from '@/components/section';
 import { isEnabled } from '@/lib/readings';
 import { hasApiKey, roxy } from '@/lib/roxy/client';
 import { tryUnwrap } from '@/lib/roxy/guard';
@@ -18,14 +19,14 @@ export async function CardOfTheDay() {
   if ('error' in result) return null;
 
   return (
-    <section className="py-16 sm:py-24">
+    <Section>
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="eyebrow text-primary">Card of the day</p>
           <h2 className="mt-3 font-display text-3xl sm:text-4xl">The card for today</h2>
           <p className="mt-5 max-w-xl text-muted-foreground">
-            One card, drawn fresh each day, the same for every visitor. Take it as a question to carry
-            around rather than an answer to obey.
+            One card, drawn fresh each day, the same for every visitor. Take it as a question to
+            carry around rather than an answer to obey.
           </p>
         </div>
         <Link href="/readings/tarot" className="text-sm underline underline-offset-4">
@@ -37,6 +38,6 @@ export async function CardOfTheDay() {
       <div className="mt-12 rounded-2xl border border-border bg-card p-4 sm:p-8">
         <RoxyTarotCard data={result.data} />
       </div>
-    </section>
+    </Section>
   );
 }

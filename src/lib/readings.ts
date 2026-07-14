@@ -1,18 +1,5 @@
-import { siteConfig, type ReadingKey, type ReadingToggleKey } from '@/config/site.config';
-
-/**
- * One free reading page. The registry below is the single source of truth for which readings exist: the navigation, the mobile menu, the footer, the home page grid, and the sitemap all derive from it, so a reading is never listed in one place and missing from another.
- *
- * Turning a reading off in `site.config.ts` removes it from all of them and makes its route 404. Adding one means adding an entry here, a route folder, and a toggle key. Contract: `docs/readings.md`.
- */
-export interface Reading {
-  key: ReadingKey;
-  href: string;
-  /** Page heading and card title. */
-  title: string;
-  /** One line, used on the cards and in the reading grid. */
-  blurb: string;
-}
+import { siteConfig } from '@/config/site.config';
+import type { Reading, ReadingToggleKey } from '@/types';
 
 export const READINGS: readonly Reading[] = [
   {
@@ -31,7 +18,8 @@ export const READINGS: readonly Reading[] = [
     key: 'compatibility',
     href: '/readings/compatibility',
     title: 'Compatibility Score',
-    blurb: 'Two charts, side by side, scored across the things that actually strain a relationship.',
+    blurb:
+      'Two charts, side by side, scored across the things that actually strain a relationship.',
   },
   {
     key: 'lifePath',

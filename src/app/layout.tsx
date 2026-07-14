@@ -56,11 +56,16 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${display.variable} ${script.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <AnnouncementBar />
           <SiteHeader />
-          {/* The one container in the project. Pages never add their own width wrapper. */}
-          <main className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6">{children}</main>
+          {/* No container here on purpose: `Section` owns the full-bleed background AND the container inside it, so a wash can reach the viewport edge while its content stays on the same grid as the header and the footer. Pages never set a width. */}
+          <main className="flex-1">{children}</main>
           <SiteFooter />
         </ThemeProvider>
       </body>

@@ -2,6 +2,7 @@
 
 import { RoxyHoroscopeCard } from '@roxyapi/ui-react';
 import { useActionState } from 'react';
+import { horoscopeAction } from '@/app/readings/actions';
 import { ReadingError, ReadingResult, SubmitButton } from '@/components/readings/parts';
 import { Label } from '@/components/ui/label';
 import {
@@ -11,7 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { horoscopeAction } from '@/app/readings/actions';
 import { IDLE } from '@/lib/reading-state';
 
 const SIGNS = [

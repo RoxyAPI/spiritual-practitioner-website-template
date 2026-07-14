@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BookingCta } from '@/components/booking-cta';
 import { PageHeader } from '@/components/page-header';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
 
 export const metadata: Metadata = {
@@ -22,7 +23,7 @@ export default function TestimonialsPage() {
         lead="Every quote below is from someone who booked, sat down, and let the session go where it needed to."
       />
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <ul className="grid gap-6 md:grid-cols-2">
           {siteConfig.testimonials.map((testimonial) => (
             <li
@@ -35,17 +36,19 @@ export default function TestimonialsPage() {
               <p className="mt-8 border-t border-border pt-6">
                 <span className="script block text-primary">{testimonial.name}</span>
                 {testimonial.detail ? (
-                  <span className="mt-1 block text-sm text-muted-foreground">{testimonial.detail}</span>
+                  <span className="mt-1 block text-sm text-muted-foreground">
+                    {testimonial.detail}
+                  </span>
                 ) : null}
               </p>
             </li>
           ))}
         </ul>
-      </section>
+      </Section>
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta line="The next one of these could be about your reading." />
-      </section>
+      </Section>
     </div>
   );
 }

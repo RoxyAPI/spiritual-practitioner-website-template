@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ApiKeyMissing } from '@/components/api-key-missing';
-import { TarotForm } from '@/components/readings/tarot-form';
 import { ReadingLayout } from '@/components/reading-layout';
+import { TarotForm } from '@/components/readings/tarot-form';
 import { isEnabled } from '@/lib/readings';
 import { hasApiKey } from '@/lib/roxy/client';
 

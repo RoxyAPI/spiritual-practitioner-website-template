@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { BookingCta } from '@/components/booking-cta';
 import { JsonLd } from '@/components/json-ld';
+import { Section } from '@/components/section';
 import { siteConfig } from '@/config/site.config';
 import { personJsonLd } from '@/lib/seo';
 
@@ -16,7 +17,7 @@ export default function AboutPage() {
     <div className="divide-y divide-border/60">
       <JsonLd data={personJsonLd()} />
 
-      <section className="grid gap-12 py-16 sm:py-24 md:grid-cols-[1fr_1.3fr] md:gap-16">
+      <Section wash="start" containerClassName="grid gap-12 md:grid-cols-[1fr_1.3fr] md:gap-16">
         <div className="mx-auto w-full max-w-xs md:mx-0 md:max-w-none">
           <Image
             src={siteConfig.photo.src}
@@ -60,10 +61,10 @@ export default function AboutPage() {
             </ul>
           ) : null}
         </div>
-      </section>
+      </Section>
 
       {siteConfig.stats && siteConfig.stats.length > 0 ? (
-        <section className="py-16 sm:py-24">
+        <Section>
           <dl className="grid gap-10 text-center sm:grid-cols-3">
             {siteConfig.stats.map((stat) => (
               <div key={stat.label}>
@@ -75,12 +76,12 @@ export default function AboutPage() {
               </div>
             ))}
           </dl>
-        </section>
+        </Section>
       ) : null}
 
-      <section className="py-16 sm:py-24">
+      <Section>
         <BookingCta line="If you have read this far, the question you came with is probably worth an hour." />
-      </section>
+      </Section>
     </div>
   );
 }

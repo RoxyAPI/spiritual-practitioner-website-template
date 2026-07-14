@@ -2,12 +2,12 @@
 
 import { RoxyBodygraph, RoxyHdTypeCard } from '@roxyapi/ui-react';
 import { useActionState, useState } from 'react';
+import { humanDesignBodygraphAction, humanDesignTypeAction } from '@/app/readings/actions';
 import { CitySearch } from '@/components/city-search';
 import { ReadingError, ReadingResult, SubmitButton } from '@/components/readings/parts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { humanDesignBodygraphAction, humanDesignTypeAction } from '@/app/readings/actions';
 import { IDLE } from '@/lib/reading-state';
 
 /**
@@ -25,7 +25,9 @@ export function HumanDesignForm() {
       <form
         action={(form) => {
           // Kept so the bodygraph step can resubmit the same birth data without asking for it twice.
-          setBirth(Object.fromEntries([...form.entries()].map(([key, value]) => [key, String(value)])));
+          setBirth(
+            Object.fromEntries([...form.entries()].map(([key, value]) => [key, String(value)])),
+          );
           typeAction(form);
         }}
         className="grid max-w-2xl gap-6"

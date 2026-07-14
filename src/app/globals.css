@@ -248,6 +248,8 @@ html:root {
   --roxy-font-sans: var(--font-sans-var);
   --roxy-radius-md: var(--radius);
   --roxy-radius-lg: calc(var(--radius) * 1.8);
+  /* The house style has no entry reveals, and a reading that fades in is also a reading that is briefly translucent, which drops its text below the contrast floor while it animates. */
+  --roxy-motion-duration: 0ms;
 }
 
 @layer base {
@@ -268,6 +270,16 @@ html:root {
 }
 
 @layer components {
+  /*
+  The measure of the site, defined ONCE. Every full-width band (the announcement bar, the header,
+  each Section, the footer) paints its background edge to edge and then puts its content inside this,
+  which is why a wash can bleed to the viewport while its text still lines up with the wordmark above
+  it and the footer columns below it. Change the width here and the whole site moves together.
+  */
+  .site-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+  }
+
   /* Uppercase micro-label above section headings and inside buttons. */
   .eyebrow {
     @apply text-xs font-medium uppercase tracking-[0.2em];
