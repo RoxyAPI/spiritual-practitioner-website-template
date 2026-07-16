@@ -250,6 +250,10 @@ html:root {
   --roxy-radius-lg: calc(var(--radius) * 1.8);
   /* The house style has no entry reveals, and a reading that fades in is also a reading that is briefly translucent, which drops its text below the contrast floor while it animates. */
   --roxy-motion-duration: 0ms;
+  /* Secondary ink (form labels, generic-renderer text, chart strokes). Without this the library stock slate leaks through and reads bluish in dark mode. Derived from the active palette so all four palettes and both modes stay warm automatically. */
+  --roxy-secondary: color-mix(in srgb, var(--foreground) 65%, var(--muted-foreground));
+  /* Display font for component headings (picked up by newer library releases; inert on 0.15). */
+  --roxy-font-display: var(--font-display-var);
 }
 
 @layer base {
