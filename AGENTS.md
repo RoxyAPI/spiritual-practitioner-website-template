@@ -20,7 +20,7 @@ Prefer these live sources over memory for any RoxyAPI path, field, SDK method, o
 ## Setup
 
 - Get an API key at https://roxyapi.com/pricing
-- Copy `env.example` to `.env.local` and set `ROXYAPI_KEY`. That is the only secret in the project.
+- Copy `.env.example` to `.env.local` and set `ROXYAPI_KEY`. That is the only secret in the project.
 - `npm install`, then `npm run dev`, then open http://localhost:3000
 - `npm run verify` runs the whole gate in the order CI runs it: format, lint, types, tests, keyless build. Run it before you push. The same order runs on commit and on push via lefthook.
 

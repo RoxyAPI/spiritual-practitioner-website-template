@@ -92,20 +92,20 @@ html[data-palette='rosewater'] {
 html[data-palette='rosewater'].dark {
   --background: #231619;
   --foreground: #F2E4DF;
-  --card: #2E1E22;
+  --card: #37272B;
   --card-foreground: #F2E4DF;
-  --popover: #2E1E22;
+  --popover: #37272B;
   --popover-foreground: #F2E4DF;
   --primary: #D9A2A6;
   --primary-foreground: #33191E;
-  --secondary: #2E1E22;
+  --secondary: #37272B;
   --secondary-foreground: #F2E4DF;
-  --muted: #2E1E22;
+  --muted: #37272B;
   --muted-foreground: #B39698;
   --accent: #CDB37C;
   --accent-foreground: #33191E;
-  --border: #402C31;
-  --input: #402C31;
+  --border: #49353A;
+  --input: #49353A;
   --ring: #D9A2A6;
 }
 
@@ -132,20 +132,20 @@ html[data-palette='eucalyptus'] {
 html[data-palette='eucalyptus'].dark {
   --background: #191E19;
   --foreground: #E9EDE3;
-  --card: #232A23;
+  --card: #2A312A;
   --card-foreground: #E9EDE3;
-  --popover: #232A23;
+  --popover: #2A312A;
   --popover-foreground: #E9EDE3;
   --primary: #9CC0AC;
   --primary-foreground: #16241C;
-  --secondary: #232A23;
+  --secondary: #2A312A;
   --secondary-foreground: #E9EDE3;
-  --muted: #232A23;
+  --muted: #2A312A;
   --muted-foreground: #9FA89B;
   --accent: #C2A87E;
   --accent-foreground: #16241C;
-  --border: #313A31;
-  --input: #313A31;
+  --border: #384138;
+  --input: #384138;
   --ring: #9CC0AC;
 }
 
@@ -172,20 +172,20 @@ html[data-palette='kiln'] {
 html[data-palette='kiln'].dark {
   --background: #211710;
   --foreground: #F2E7D9;
-  --card: #2C2016;
+  --card: #35281E;
   --card-foreground: #F2E7D9;
-  --popover: #2C2016;
+  --popover: #35281E;
   --popover-foreground: #F2E7D9;
   --primary: #D98D5F;
   --primary-foreground: #2E1608;
-  --secondary: #2C2016;
+  --secondary: #35281E;
   --secondary-foreground: #F2E7D9;
-  --muted: #2C2016;
+  --muted: #35281E;
   --muted-foreground: #B49D87;
   --accent: #D8B98C;
   --accent-foreground: #2E1608;
-  --border: #3D2E20;
-  --input: #3D2E20;
+  --border: #463729;
+  --input: #463729;
   --ring: #D98D5F;
 }
 
@@ -212,20 +212,20 @@ html[data-palette='moonlit'] {
 html[data-palette='moonlit'].dark {
   --background: #0B1826;
   --foreground: #EFE7D3;
-  --card: #142331;
+  --card: #1B2A39;
   --card-foreground: #EFE7D3;
-  --popover: #142331;
+  --popover: #1B2A39;
   --popover-foreground: #EFE7D3;
   --primary: #C9A96B;
   --primary-foreground: #16222E;
-  --secondary: #142331;
+  --secondary: #1B2A39;
   --secondary-foreground: #EFE7D3;
-  --muted: #142331;
+  --muted: #1B2A39;
   --muted-foreground: #92A4B2;
   --accent: #99BAD7;
   --accent-foreground: #16222E;
-  --border: #24384A;
-  --input: #24384A;
+  --border: #263A4C;
+  --input: #263A4C;
   --ring: #C9A96B;
 }
 
