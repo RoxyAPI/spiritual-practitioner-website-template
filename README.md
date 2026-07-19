@@ -241,7 +241,7 @@ If you or your assistant want to go further than the config file:
 git clone https://github.com/RoxyAPI/spiritual-practitioner-website-template.git
 cd spiritual-practitioner-website-template
 npm install
-cp env.example .env.local     # then add your ROXYAPI_KEY
+cp .env.example .env.local     # then add your ROXYAPI_KEY
 npm run dev
 ```
 

@@ -83,6 +83,29 @@ describe('palettes', () => {
   });
 });
 
+describe('dark elevation', () => {
+  // The light-only equality check above never sees the dark blocks, so without this a
+  // dark --card that collapses onto --background (cards vanishing into near-black) ships
+  // unguarded. Assert the card face is a distinct, lighter surface than the page behind it.
+  const hex = (body: string | undefined, token: string) =>
+    new RegExp(`${token}\\s*:\\s*(#[0-9A-Fa-f]{6})`).exec(body ?? '')?.[1]?.toUpperCase();
+  const luma = (h: string) =>
+    [1, 3, 5].reduce((sum, i) => sum + Number.parseInt(h.slice(i, i + 2), 16), 0);
+
+  it.each(PALETTES_IN_CSS)('%s dark card is a lighter surface than its background', (palette) => {
+    const body = block(`html[data-palette='${palette}'].dark`);
+    const card = hex(body, '--card');
+    const background = hex(body, '--background');
+    expect(card, `${palette} dark --card`).toBeDefined();
+    expect(background, `${palette} dark --background`).toBeDefined();
+    expect(card, 'dark --card must differ from --background').not.toBe(background);
+    expect(
+      luma(card as string),
+      `${palette} dark --card should be lighter than --background`,
+    ).toBeGreaterThan(luma(background as string));
+  });
+});
+
 describe('roxy component theming', () => {
   it('maps every roxy token onto a palette token', () => {
     const body = block('html:root');
