@@ -121,18 +121,19 @@ describe('the palette copy the social card renders from', () => {
     expect(Object.keys(PALETTES).sort()).toEqual([...PALETTES_IN_CSS].sort());
   });
 
-  it.each(
-    PALETTES_IN_CSS,
-  )('%s matches the light block in globals.css, so the card can never drift from the site', (name) => {
-    const body = block(`html[data-palette='${name}']`) ?? '';
+  it.each(PALETTES_IN_CSS)(
+    '%s matches the light block in globals.css, so the card can never drift from the site',
+    (name) => {
+      const body = block(`html[data-palette='${name}']`) ?? '';
 
-    for (const [token, hex] of Object.entries(PALETTES[name])) {
-      const declared = new RegExp(`--${token}\\s*:\\s*(#[0-9A-Fa-f]{6})`).exec(body)?.[1];
-      expect(declared?.toUpperCase(), `--${token} differs from src/lib/palettes.ts`).toBe(
-        hex.toUpperCase(),
-      );
-    }
-  });
+      for (const [token, hex] of Object.entries(PALETTES[name])) {
+        const declared = new RegExp(`--${token}\\s*:\\s*(#[0-9A-Fa-f]{6})`).exec(body)?.[1];
+        expect(declared?.toUpperCase(), `--${token} differs from src/lib/palettes.ts`).toBe(
+          hex.toUpperCase(),
+        );
+      }
+    },
+  );
 });
 
 describe('layout', () => {
