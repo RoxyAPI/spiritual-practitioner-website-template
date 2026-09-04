@@ -20,7 +20,7 @@
     "@calcom/embed-react": "^1.5.3",
     "@hcaptcha/react-hcaptcha": "^2.2.0",
     "@roxyapi/sdk": "^1.2.73",
-    "@roxyapi/ui-react": "^0.34.0",
+    "@roxyapi/ui-react": "^0.36.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.38.0",
