@@ -4,7 +4,7 @@ This is an MIT licensed RoxyAPI Template: a complete, self-hosted website for a 
 
 It ships free birth chart, three card tarot, daily horoscope, compatibility, life path, and human design readings, all computed live by [RoxyAPI](https://roxyapi.com), plus a card of the day, a booking page, a services page, a file based blog, and SEO that generates itself from one config file. There is no database, no CMS, and no backend to run.
 
-The readings are the point: they are what a page builder cannot do, they are what visitors share and come back for, and every one of them ends in a booking call to action. Protect that when you change anything. You are most likely a coding agent helping a practitioner make this site their own. More Templates to fork: https://roxyapi.com/starters
+The readings are the point: they are what a page builder cannot do, they are what visitors share and come back for, and every one of them ends in a booking call to action. Protect that when you change anything. You are most likely a coding agent helping a practitioner make this site their own. More Templates to fork: https://roxyapi.com/templates
 
 ## Canonical RoxyAPI references (use these, do not guess)
 

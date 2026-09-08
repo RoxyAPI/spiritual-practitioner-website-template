@@ -11,7 +11,7 @@
 [![Get API Key](https://img.shields.io/badge/Get_API_Key-RoxyAPI-14b8a6?style=for-the-badge&logo=key&logoColor=white)](https://roxyapi.com/pricing)
 [![Try the API live](https://img.shields.io/badge/Try_API_Live-Free_in_browser-22c55e?style=for-the-badge&logo=swagger&logoColor=white)](https://roxyapi.com/api-reference)
 [![Methodology](https://img.shields.io/badge/Methodology-NASA_JPL_verified-f59e0b?style=for-the-badge&logo=nasa&logoColor=white)](https://roxyapi.com/methodology)
-[![More Templates](https://img.shields.io/badge/More_Templates-RoxyAPI-ec4899?style=for-the-badge&logo=github&logoColor=white)](https://roxyapi.com/starters)
+[![More Templates](https://img.shields.io/badge/More_Templates-RoxyAPI-ec4899?style=for-the-badge&logo=github&logoColor=white)](https://roxyapi.com/templates)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
 [![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https://github.com/RoxyAPI/spiritual-practitioner-website-template&env=ROXYAPI_KEY&envDescription=RoxyAPI%20key%20for%20the%20free%20readings&envLink=https://roxyapi.com/pricing)
 
@@ -295,7 +295,7 @@ Open an issue on this repository. If it is about the readings or your key, [cont
 
 ## Built with RoxyAPI
 
-One key, every domain. [Get a key](https://roxyapi.com/pricing), or [try the API in your browser first](https://roxyapi.com/api-reference), no signup needed. Accuracy is [verified against NASA JPL Horizons](https://roxyapi.com/methodology). More templates to fork: [roxyapi.com/starters](https://roxyapi.com/starters).
+One key, every domain. [Get a key](https://roxyapi.com/pricing), or [try the API in your browser first](https://roxyapi.com/api-reference), no signup needed. Accuracy is [verified against NASA JPL Horizons](https://roxyapi.com/methodology). More templates to fork: [roxyapi.com/templates](https://roxyapi.com/templates).
 
 ## License
 
