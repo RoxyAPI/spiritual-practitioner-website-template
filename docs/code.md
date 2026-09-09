@@ -31,7 +31,7 @@ tests/                    vitest suites + stubs/server-only.ts
 import 'server-only';
 import { createRoxy } from '@roxyapi/sdk';
 
-const key = process.env.ROXYAPI_KEY;
+const key = process.env.ROXY_API_KEY;
 export const roxy = createRoxy(key ?? '');
 export const hasApiKey = Boolean(key);
 ```

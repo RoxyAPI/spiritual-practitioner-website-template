@@ -54,5 +54,5 @@ pre-push:
     # Builds with NO api key on purpose: CI has no secrets, and a fork must be able to deploy
     # before it has bought anything. If this needs a key, the site has a bug.
     build:
-      run: env -u ROXYAPI_KEY npm run build
+      run: env -u ROXY_API_KEY npm run build
       priority: 5

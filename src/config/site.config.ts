@@ -3,7 +3,7 @@
  *
  * @remarks Everything on the site reads from here: pages, navigation, metadata, structured data, the social card, and the booking links. Replace the values below with your own, swap `public/portrait.jpg` for your photo, and the site is yours. No component edits needed.
  *
- * The only secret this project uses is `ROXYAPI_KEY` in `.env.local`. Nothing secret belongs in this file, which is why the Web3Forms access key (publishable by design) is allowed to live here.
+ * The only secret this project uses is `ROXY_API_KEY` in `.env.local`. Nothing secret belongs in this file, which is why the Web3Forms access key (publishable by design) is allowed to live here.
  *
  * Full field reference: `docs/config.md`.
  */

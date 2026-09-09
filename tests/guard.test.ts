@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
  * `client.ts` reads the key once at module load, so every case here re-imports the module with a
  * fresh registry. Without the reset, the first import would pin `hasApiKey` for the whole file.
  */
-const KEY = 'ROXYAPI_KEY';
+const KEY = 'ROXY_API_KEY';
 
 async function loadGuard(key: string | undefined) {
   vi.resetModules();
@@ -40,7 +40,7 @@ describe('unwrap', () => {
 
   it.each([
     ['validation_error', /birth details/i],
-    ['invalid_api_key', /ROXYAPI_KEY/],
+    ['invalid_api_key', /ROXY_API_KEY/],
     ['subscription_inactive', /not active/i],
     ['rate_limit_exceeded', /limit/i],
     ['not_found', /not available/i],

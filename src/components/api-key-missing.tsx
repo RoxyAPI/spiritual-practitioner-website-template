@@ -1,7 +1,7 @@
 import { KeyRound } from 'lucide-react';
 
 /**
- * Shown on a reading page when `ROXYAPI_KEY` is unset. A missing key is a setup step, not a bug, so
+ * Shown on a reading page when `ROXY_API_KEY` is unset. A missing key is a setup step, not a bug, so
  * the page says so plainly instead of rendering a form that cannot work or an error a visitor
  * cannot act on. The site still builds and every other page still works.
  */
@@ -12,7 +12,7 @@ export function ApiKeyMissing() {
       <h2 className="mt-5 font-display text-2xl">The readings are not connected yet</h2>
       <p className="mt-4 text-muted-foreground">
         Add a RoxyAPI key to <code className="text-foreground">.env.local</code> as{' '}
-        <code className="text-foreground">ROXYAPI_KEY</code> and restart the server. One key covers
+        <code className="text-foreground">ROXY_API_KEY</code> and restart the server. One key covers
         every reading on this site.
       </p>
       <a
