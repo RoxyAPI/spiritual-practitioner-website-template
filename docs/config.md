@@ -49,5 +49,5 @@ The config is a typed object. Its type (`SiteConfig`) lives in `src/types/index.
 
 - Seed values ship as a complete believable example practice so every surface renders on first clone. Forks overwrite, never delete fields.
 - Display strings only; no markup in config values.
-- The only secret in the project is `ROXYAPI_KEY` in `.env.local`. Nothing secret ever goes in this file.
+- The only secret in the project is `ROXY_API_KEY` in `.env.local`. Nothing secret ever goes in this file.
 - Adding a config field: extend `SiteConfig` in `src/types/index.ts`, wire the consumer, update this table, extend the contract test. All four or nothing.

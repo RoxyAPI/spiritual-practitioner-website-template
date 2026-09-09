@@ -13,7 +13,7 @@
 [![Methodology](https://img.shields.io/badge/Methodology-NASA_JPL_verified-f59e0b?style=for-the-badge&logo=nasa&logoColor=white)](https://roxyapi.com/methodology)
 [![More Templates](https://img.shields.io/badge/More_Templates-RoxyAPI-ec4899?style=for-the-badge&logo=github&logoColor=white)](https://roxyapi.com/templates)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
-[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https://github.com/RoxyAPI/spiritual-practitioner-website-template&env=ROXYAPI_KEY&envDescription=RoxyAPI%20key%20for%20the%20free%20readings&envLink=https://roxyapi.com/pricing)
+[![Deploy with Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com/new/clone?repository-url=https://github.com/RoxyAPI/spiritual-practitioner-website-template&env=ROXY_API_KEY&envDescription=RoxyAPI%20key%20for%20the%20free%20readings&envLink=https://roxyapi.com/pricing)
 
 **Copy it. Change your name and prices. Publish. About an hour, and you never touch code.**
 
@@ -99,7 +99,7 @@ A fork is your website. Every change you make in the next steps happens in your 
 Click the black **Deploy** button in the badges above. Vercel (free to sign up) asks:
 
 1. To connect your GitHub account. Say yes.
-2. For a value called `ROXYAPI_KEY`. **You can leave this empty for now**, and the site still works: every page appears, and the free readings simply say they are not connected yet. Add the key later in step 4.
+2. For a value called `ROXY_API_KEY`. **You can leave this empty for now**, and the site still works: every page appears, and the free readings simply say they are not connected yet. Add the key later in step 4.
 
 Click deploy, wait about a minute, and your site is live at an address like `your-name.vercel.app`. That address is real, shareable, and free.
 
@@ -136,7 +136,7 @@ The free readings (birth chart, tarot, and the rest) are what make visitors stay
 
 1. Get one at [roxyapi.com/pricing](https://roxyapi.com/pricing). One key covers every reading on the site.
 2. In Vercel, open your project, go to **Settings**, then **Environment Variables**.
-3. Add a variable named `ROXYAPI_KEY` and paste the key as its value.
+3. Add a variable named `ROXY_API_KEY` and paste the key as its value.
 4. Go to **Deployments** and click **Redeploy**.
 
 The readings come alive. Until you do this, the site works perfectly well without them.
@@ -241,7 +241,7 @@ If you or your assistant want to go further than the config file:
 git clone https://github.com/RoxyAPI/spiritual-practitioner-website-template.git
 cd spiritual-practitioner-website-template
 npm install
-cp .env.example .env.local     # then add your ROXYAPI_KEY
+cp .env.example .env.local     # then add your ROXY_API_KEY
 npm run dev
 ```
 

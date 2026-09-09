@@ -43,7 +43,7 @@ All four read the same config helper. Never hardcode a reading list in a compone
 
 ## No key, no crash
 
-When `ROXYAPI_KEY` is unset, every reading page renders the branded `ApiKeyMissing` state (get a key at [roxyapi.com/pricing](https://roxyapi.com/pricing), add it to `.env.local`, restart) instead of a broken form. The build must succeed with no env vars set. Rule detail: [code.md](./code.md).
+When `ROXY_API_KEY` is unset, every reading page renders the branded `ApiKeyMissing` state (get a key at [roxyapi.com/pricing](https://roxyapi.com/pricing), add it to `.env.local`, restart) instead of a broken form. The build must succeed with no env vars set. Rule detail: [code.md](./code.md).
 
 ## Conversion rule
 
